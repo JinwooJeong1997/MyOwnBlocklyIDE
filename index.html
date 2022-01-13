@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>Demo</title>
+    <script src="blockly_compressed.js"></script>
+    <script src="blocks_compressed.js"></script>
+    <script src="msg/js/en.js"></script>
+    <script src="javascript_compressed.js"></script>
+</head>
+<body>
+    <div id="blocklyDiv" style="height: 600px; width: 600px; float:left;"></div>
+    
+    <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+        <block type="controls_if"></block>
+        <block type="controls_ifelse"></block>
+        <block type="logic_compare"></block>
+        <block type="controls_repeat_ext"></block>
+        <block type="math_number">
+          <field name="NUM">123</field>
+        </block>
+        <block type="math_arithmetic"></block>
+        <block type="text"></block>
+        <block type="text_print"></block>
+    </xml>
+    <div style="width:300px; height:600px; border:1px;float:left;">
+        <textarea rows="40" cols="50" style="resize: none;" id="codeText"></textarea>
+    </div>
+    <script>
+        var workspace = Blockly.inject('blocklyDiv', {toolbox: toolbox});
+        var code = Blockly.JavaScript.workspaceToCode(workspace);
+
+        function myUpdateFunction(event) {
+            var code = Blockly.JavaScript.workspaceToCode(workspace);
+            document.getElementById('codeText').value = code;
+          }
+        workspace.addChangeListener(myUpdateFunction);
+    </script>
+</body>
+</html>
